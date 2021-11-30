@@ -300,9 +300,9 @@ void decompress(const string filename)
     inputFile.read((char*)compressedData, totalSize * sizeof(uint8_t));
     inputFile.read((char*)occurences, totalSize * sizeof(uint32_t));
 
-    auto t1 = chrono::high_resolution_clock::now();
-
     const int gridSize = (totalSize + ELEMENTS_PER_BLOCK - 1) / ELEMENTS_PER_BLOCK;
+
+    auto t1 = chrono::high_resolution_clock::now();
 
     prefixSum(gridSize, totalSize, occurences, scannedOccurences, false);
     cudaDeviceSynchronize();
@@ -319,7 +319,7 @@ void decompress(const string filename)
     cout << filename << " GPU decompression time: " << ms_int.count() << "ms\n" << endl;
 
     ofstream outputFile;
-    outputFile.open("decompressed.bmp", ios::binary);
+    outputFile.open(filename + "_decompressed.bmp", ios::binary);
     outputFile.write((char*)decompressedData, decompressedSize * sizeof(uint8_t));
 }
 
@@ -331,10 +331,6 @@ int main(int argc, char const *argv[])
     decompress(filename + ".rlz");
 
     filename = "simple_image.bmp";
-    compress(filename);
-    decompress(filename + ".rlz");
-
-    filename = "very_simple_image.bmp";
     compress(filename);
     decompress(filename + ".rlz");
 }
