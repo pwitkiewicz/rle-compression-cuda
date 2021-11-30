@@ -316,7 +316,7 @@ void decompress(const string filename)
 
     auto t2 = chrono::high_resolution_clock::now();
     auto ms_int = chrono::duration_cast<chrono::milliseconds>(t2 - t1);
-    cout << filename << " GPU decompression time: " << ms_int.count() << "ms\n";
+    cout << filename << " GPU decompression time: " << ms_int.count() << "ms\n" << endl;
 
     ofstream outputFile;
     outputFile.open("decompressed.bmp", ios::binary);
@@ -326,8 +326,15 @@ void decompress(const string filename)
 
 int main(int argc, char const *argv[])
 {
-    string filename = "simple_image.bmp";
+    string filename = "image.bmp";
+    compress(filename);
+    decompress(filename + ".rlz");
 
+    filename = "simple_image.bmp";
+    compress(filename);
+    decompress(filename + ".rlz");
+
+    filename = "very_simple_image.bmp";
     compress(filename);
     decompress(filename + ".rlz");
 }
