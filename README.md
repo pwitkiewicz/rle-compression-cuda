@@ -1,4 +1,4 @@
-# RLE compression
+# RLE compression in CUDA
 
 This is mine version of compression algorithm based on run length encoding implemented for nVidia cards having CUDA compute capability.
 
