@@ -1,4 +1,4 @@
-add: add.cu
+kernel: kernel.cu
 	nvcc kernel.cu --std=c++17 -o kernel
 
 clean:
