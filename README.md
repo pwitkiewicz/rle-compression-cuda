@@ -17,3 +17,9 @@ Decompression algorithm is a more straightforward:
 1. Compute __exclusive prefix sum__ out of occurences matrix, it's elemnts will point to the place of start of each run.
 2. Compute orginal data, in my approach each thread is responsible for filling out output matrix for one run. 
    (It might be inefficient approach for a highly RLE compressible data)
+
+Comparison with simple sequential CPU RLE compression implementation (averages for a 256 colour 11520x6480 bitmap)
+| Device  | Compression time  | Decompression time  |
+|------|---|---|
+| CPU  | 2229ms  | 7481ms  |
+| GPU  | 955ms   | 320ms |
